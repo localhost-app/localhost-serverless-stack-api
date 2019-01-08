@@ -46,8 +46,53 @@ functions:
     handler: handler.main
     events:
       - http:
+          path: notes/test
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  getNote:
+    handler: handler.getNote
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  listNotes:
+    handler: handler.listNotes
+    events:
+      - http:
           path: notes
           method: get
+          cors: true
+          authorizer: aws_iam
+
+  createNote:
+    handler: handler.createNote
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+  updateNote:
+    handler: handler.updateNote
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+
+  deleteNote:
+    handler: handler.deleteNote
+    events:
+      - http:
+          path: notes/{id}
+          method: delete
           cors: true
           authorizer: aws_iam
 
