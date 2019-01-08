@@ -1,4 +1,4 @@
-service: notes-app-mono-users
+service: localhost-app-mono-users
 
 custom:
   # Our stage is based on what is passed in when running serverless
@@ -56,4 +56,3 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
-

@@ -1,4 +1,4 @@
-service: notes-app-mono-notes
+service: localhost-app-mono-notes
 
 custom:
   # Our stage is based on what is passed in when running serverless
@@ -58,12 +58,11 @@ resources:
         Ref: ApiGatewayRestApi
       Export:
         Name: ${self:custom.stage}-ApiGatewayRestApiId
-  
+
     ApiGatewayRestApiRootResourceId:
       Value:
          Fn::GetAtt:
           - ApiGatewayRestApi
-          - RootResourceId 
+          - RootResourceId
       Export:
         Name: ${self:custom.stage}-ApiGatewayRestApiRootResourceId
-        

@@ -1,4 +1,4 @@
-service: notes-app-mono-database
+service: localhost-app-mono-database
 
 custom:
   # Our stage is based on what is passed in when running serverless
