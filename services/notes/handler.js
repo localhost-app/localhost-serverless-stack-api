@@ -1,8 +1,38 @@
 'use strict';
 
-import uuid from "uuid";
-import * as dynamoDbLib from "../../libs/dynamodb-lib";
-import { success, failure } from "../../libs/response-lib";
+// import uuid from "uuid";
+// import * as dynamoDbLib from "../../libs/dynamodb-lib";
+// import { success, failure } from "../../libs/response-lib";
+
+var uuid = require("uuid");
+
+var AWS = require("aws-sdk");
+
+function call(action, params) {
+  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+  return dynamoDb[action](params).promise();
+}
+
+function success(body) {
+  return buildResponse(200, body);
+}
+
+function failure(body) {
+  return buildResponse(500, body);
+}
+
+function buildResponse(statusCode, body) {
+  return {
+    statusCode: statusCode,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true
+    },
+    body: JSON.stringify(body)
+  };
+}
+
 
 module.exports.main = (event, context, callback) => {
   const response = {
